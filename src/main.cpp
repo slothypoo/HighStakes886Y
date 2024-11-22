@@ -52,7 +52,7 @@ void on_center_button() {
 void initialize() {
   pros::lcd::initialize(); // initialize brain screen
   pros::lcd::register_btn0_cb(on_left_button);
-  pros::lcd::register_btn0_cb(on_center_button);
+  pros::lcd::register_btn1_cb(on_center_button);
   chassis.calibrate();     // calibrate sensors
   // intakeRaise.set_value(1);
   armRotation.reset();
