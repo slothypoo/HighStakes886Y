@@ -3,6 +3,7 @@
 #include "globals.hpp"
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "lemlibglobals.hpp"
+#include "liblvgl/llemu.hpp"
 #include "mathfunc.hpp"
 #include "pros/abstract_motor.hpp"
 #include "pros/adi.hpp"
@@ -50,7 +51,8 @@ void on_center_button() {
  */
 void initialize() {
   pros::lcd::initialize(); // initialize brain screen
-
+  pros::lcd::register_btn0_cb(on_left_button);
+  pros::lcd::register_btn0_cb(on_center_button);
   chassis.calibrate();     // calibrate sensors
   // intakeRaise.set_value(1);
   armRotation.reset();
