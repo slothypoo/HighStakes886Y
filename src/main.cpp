@@ -421,16 +421,16 @@ void opcontrol() {
     }
 
     if (armMacro) {
-      error = angleWrapOneDirection(armTarget - armRotation.get_angle(), -1); // 7250 = target
+      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
         break;
       }
       if (sign(error) != sign(previous_error)) {
-        integral = 0;
-      } else {
         integral += error;
+      } else {
+        integral = 0;
       }
       arm.move_voltage(error * armkP + integral * armkI + derivative * armkD);
       previous_error = error;
