@@ -366,7 +366,7 @@ void autonomous() {
 
 void opcontrol() {
   autoStarted = false;
-  bool isExtended1 = true; // remove for DRIVER SKILLS
+  // bool isExtended1 = true; // remove for DRIVER SKILLS
   bool isExtended2 = false;
   bool isExtended3 = false;
   bool isExtended4 = false;
@@ -375,8 +375,8 @@ void opcontrol() {
   bool taskDisable3 = false;
   arm.set_brake_mode(pros::MotorBrake::hold);
   // //BELOW FOR DRIVER SKILLS//
-  // intakeRaise.set_value(true);
-  // bool isExtended1 = false;
+  intakeRaise.set_value(true);
+  bool isExtended1 = false;
   while (true) {
     int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
@@ -444,7 +444,7 @@ void opcontrol() {
 
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       // ejectorIntake(forward, no_colour);
-      intake.move_voltage(12000);
+      intake.move_voltage(-12000);
       conveyor.move_voltage(-12000);
       // ejectorIntake();
     } else {
