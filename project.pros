@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "RN_ELIMS",
+    "project_name": "DEV",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -300,7 +300,7 @@
     "upload_options": {
       "description": "",
       "icon": "pros",
-      "slot": 5
+      "slot": 1
     },
     "use_early_access": false
   }
