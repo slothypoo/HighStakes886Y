@@ -363,7 +363,7 @@ void autonomous() {
 
 void opcontrol() {
   autoStarted = false;
-  bool isExtended1 = true; // remove for DRIVER SKILLS
+  // bool isExtended1 = true; // remove for DRIVER SKILLS
   bool isExtended2 = false;
   bool isExtended3 = false;
   bool isExtended4 = false;
@@ -372,9 +372,8 @@ void opcontrol() {
   bool taskDisable3 = false;
   arm.set_brake_mode(pros::MotorBrake::hold);
   // //BELOW FOR DRIVER SKILLS//
-  // intakeRaise.set_value(true);
-  // bool isExtended1 = false;
-  std::cout << "pls work" << std::endl;
+  intakeRaise.set_value(true);
+  bool isExtended1 = false;
   while (true) {
     int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
