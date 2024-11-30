@@ -374,6 +374,7 @@ void opcontrol() {
   // //BELOW FOR DRIVER SKILLS//
   // intakeRaise.set_value(true);
   // bool isExtended1 = false;
+  std::cout << "pls work" << std::endl;
   while (true) {
     int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
@@ -433,7 +434,7 @@ void opcontrol() {
     // }
 
     if (armMacro) {
-      error = angleWrap(armTarget, armRotation.get_angle()); // 7250 = target
+      error = angleWrapOneDirection(armTarget, armRotation.get_angle(), -1); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
