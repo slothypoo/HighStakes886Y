@@ -53,7 +53,7 @@ void initialize() {
   pros::lcd::initialize(); // initialize brain screen
   pros::lcd::register_btn0_cb(on_left_button);
   pros::lcd::register_btn1_cb(on_center_button);
-  chassis.calibrate();     // calibrate sensors
+  chassis.calibrate(); // calibrate sensors
   // intakeRaise.set_value(1);
   armRotation.reset();
   // print position to brain screen
@@ -70,7 +70,7 @@ void initialize() {
   });
   pros::Task Macro([&]() {
     while (autoStarted == true) {
-      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
+      error = angleWrap(armTarget, armRotation.get_angle()); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 0.5 || fabs(error + derivative) < 0.5) {
         arm.move_voltage(0);
@@ -131,7 +131,6 @@ void blue_no_auto_AWP() {
   chassis.setPose(62, -24, 270);
   chassis.moveToPose(55, -25, 270, 1000);
 }
-
 
 void skills() {
 
@@ -328,8 +327,6 @@ void skills() {
   conveyor.move_velocity(0);
 }
 
-
-
 void autonomous() {
   if (color) {
     if (current == 0) {
@@ -387,15 +384,32 @@ void opcontrol() {
     // ARM CONTROL//
     /////////////////////////////////////////////////////
 
-    if (rightY > 30) {
+    if (std::abs(rightY) > 10) {
       armMacro = false;
-      arm.move(rightY);
-    } else if (rightY < -30) {
-      armMacro = false;
-      arm.move(rightY);
+    }
+    if (armMacro == false) {
+      // if ((armRotation.get_angle() < 27500) || (armRotation.get_angle() >
+      // 10000)) {
+      if (rightY > 10) {
+        armMacro = false;
+        arm.move(rightY * 120);
+      } else if (rightY < 10) {
+        armMacro = false;
+        arm.move(rightY * 120);
+      }
+      // }
+      // if (((armRotation.get_angle() > 27500))) {
+      // 	if (rightY > 10) {
+      // 		arm.move(0);
+      // 	}
+      // 	else if (rightY < 10) {
+      // 		armMacro = false;
+      // 		arm.move(rightY*120);
+      // 	}
+      // }
     }
 
-    if (!armMacro && std::abs(rightY) < 30) {
+    if (!armMacro && std::abs(rightY) < 10) {
       arm.move(0);
     }
     if (rightX > 70) {
@@ -403,8 +417,23 @@ void opcontrol() {
       armTarget = 16200;
     }
 
+    // if (rightX < -70) {
+    // 	armMacro = true;
+    // 	armTarget = 28000;
+    // }
+
+    // if (digitalA) {
+    // 	armMacro = true;
+    // 	armTarget = 32000;
+    // }
+
+    // if (rightX < -70) {
+    // 	armMacro = true;
+    // 	armTarget = 30000;
+    // }
+
     if (armMacro) {
-      error = angleWrapOneDirection(armTarget - armRotation.get_angle(), -1); // 7250 = target
+      error = angleWrapOneDirection(armTarget, armRotation.get_angle(), -1); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
