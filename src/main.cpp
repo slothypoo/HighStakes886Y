@@ -387,32 +387,15 @@ void opcontrol() {
     // ARM CONTROL//
     /////////////////////////////////////////////////////
 
-    if (std::abs(rightY) > 10) {
+    if (rightY > 30) {
       armMacro = false;
-    }
-    if (armMacro == false) {
-      // if ((armRotation.get_angle() < 27500) || (armRotation.get_angle() >
-      // 10000)) {
-      if (rightY > 10) {
-        armMacro = false;
-        arm.move(rightY);
-      } else if (rightY < 10) {
-        armMacro = false;
-        arm.move(rightY);
-      }
-      // }
-      // if (((armRotation.get_angle() > 27500))) {
-      // 	if (rightY > 10) {
-      // 		arm.move(0);
-      // 	}
-      // 	else if (rightY < 10) {
-      // 		armMacro = false;
-      // 		arm.move(rightY*120);
-      // 	}
-      // }
+      arm.move(rightY);
+    } else if (rightY < -30) {
+      armMacro = false;
+      arm.move(rightY);
     }
 
-    if (!armMacro && std::abs(rightY) < 10) {
+    if (!armMacro && std::abs(rightY) < 30) {
       arm.move(0);
     }
     if (rightX > 70) {
@@ -421,7 +404,7 @@ void opcontrol() {
     }
 
     if (armMacro) {
-      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
+      error = angleWrapOneDirection(armTarget - armRotation.get_angle(), -1); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
