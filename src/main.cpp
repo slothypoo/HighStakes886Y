@@ -395,10 +395,28 @@ void opcontrol() {
       arm.move(0);
     }
     if (rightX > 70) {
+      //loading
       armMacro = true;
       armTarget = 16200;
     }
 
+    if (rightX < -70) {
+      //alliance stake lineup
+      armMacro = true;
+      armTarget = 30000;
+    }
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+      //goal flip
+      armMacro = true;
+      armTarget = 36000;
+    }
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
+      //descore
+      armMacro = true;
+      armTarget = 28000;
+    }
     if (armMacro) {
       error = angleWrapOneDirection(armTarget, armRotation.get_angle(),
                                     -1); // 7250 = target
