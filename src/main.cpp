@@ -53,7 +53,7 @@ void initialize() {
   pros::lcd::initialize(); // initialize brain screen
   pros::lcd::register_btn0_cb(on_left_button);
   pros::lcd::register_btn1_cb(on_center_button);
-  chassis.calibrate();     // calibrate sensors
+  chassis.calibrate(); // calibrate sensors
   // intakeRaise.set_value(1);
   armRotation.reset();
   // print position to brain screen
@@ -131,7 +131,6 @@ void blue_no_auto_AWP() {
   chassis.setPose(62, -24, 270);
   chassis.moveToPose(55, -25, 270, 1000);
 }
-
 
 void skills() {
 
@@ -328,8 +327,6 @@ void skills() {
   conveyor.move_velocity(0);
 }
 
-
-
 void autonomous() {
   if (color) {
     if (current == 0) {
@@ -387,15 +384,22 @@ void opcontrol() {
     // ARM CONTROL//
     /////////////////////////////////////////////////////
 
-    if (rightY > 30) {
+    if (std::abs(rightY) > 10) {
       armMacro = false;
-      arm.move(rightY);
-    } else if (rightY < -30) {
-      armMacro = false;
-      arm.move(rightY);
+    }
+    if (armMacro == false) {
+      // if ((armRotation.get_angle() < 27500) || (armRotation.get_angle() >
+      // 10000)) {
+      if (rightY > 10) {
+        armMacro = false;
+        arm.move(rightY * 120);
+      } else if (rightY < 10) {
+        armMacro = false;
+        arm.move(rightY * 120);
+      }
     }
 
-    if (!armMacro && std::abs(rightY) < 30) {
+    if (!armMacro && std::abs(rightY) < 10) {
       arm.move(0);
     }
     if (rightX > 70) {
@@ -404,16 +408,16 @@ void opcontrol() {
     }
 
     if (armMacro) {
-      error = angleWrapOneDirection(armTarget, armRotation.get_angle(), -1);
+      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
         break;
       }
       if (sign(error) != sign(previous_error)) {
-        integral = 0;
-      } else {
         integral += error;
+      } else {
+        integral = 0;
       }
       arm.move_voltage(error * armkP + integral * armkI + derivative * armkD);
       previous_error = error;

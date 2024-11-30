@@ -20,7 +20,6 @@ double angleWrapOneDirection(double target, double angle, int direction, int ran
   double error = target - angle;
   if(sign(error) != direction && range > angle) {
     error = (error + 36000*direction) * inversion;
-    std::cout << "running this" << std::endl;
   }
   return error;
 }
