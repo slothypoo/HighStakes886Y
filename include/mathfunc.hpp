@@ -18,9 +18,9 @@ double angleWrap(double angle) {
 double angleWrapOneDirection(double target, double angle, int direction, int range=5000, int inversion = 1) {
   double error = target - angle;
   if(sign(error) != direction && range > angle) {
-    angle = (angle + 36000*direction) * inversion;
+    error = (error + 36000*direction) * inversion;
   }
-  return angle;
+  return error;
 }
 
 #endif
