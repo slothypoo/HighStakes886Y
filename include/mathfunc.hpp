@@ -1,5 +1,5 @@
 #ifndef MATHFUNC_HPP
-#define MATHFUNC_HPP
+#define MATHFUNC_HPP 
 
 template <typename T> int sign(T val) { return (T(0) < val) - (val < T(0)); }
 
@@ -15,8 +15,8 @@ double angleWrap(double angle) {
   return angle;
 }
 
-double angleWrapOneDirection(double angle, int direction, int inversion = 1) {
-  if(sign(angle) != direction){
+double angleWrapOneDirection(double angle, int direction, int range=5000, int inversion = 1) {
+  if(sign(angle) != direction && angle > range) {
     angle = (angle + 36000*direction) * inversion;
   }
   return angle;

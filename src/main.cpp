@@ -411,9 +411,9 @@ void opcontrol() {
         break;
       }
       if (sign(error) != sign(previous_error)) {
-        integral += error;
-      } else {
         integral = 0;
+      } else {
+        integral += error;
       }
       arm.move_voltage(error * armkP + integral * armkI + derivative * armkD);
       previous_error = error;
