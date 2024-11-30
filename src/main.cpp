@@ -392,11 +392,21 @@ void opcontrol() {
       // 10000)) {
       if (rightY > 10) {
         armMacro = false;
-        arm.move(rightY);
+        arm.move(rightY * 120);
       } else if (rightY < 10) {
         armMacro = false;
-        arm.move(rightY);
+        arm.move(rightY * 120);
       }
+      // }
+      // if (((armRotation.get_angle() > 27500))) {
+      // 	if (rightY > 10) {
+      // 		arm.move(0);
+      // 	}
+      // 	else if (rightY < 10) {
+      // 		armMacro = false;
+      // 		arm.move(rightY*120);
+      // 	}
+      // }
     }
 
     if (!armMacro && std::abs(rightY) < 10) {
@@ -406,6 +416,21 @@ void opcontrol() {
       armMacro = true;
       armTarget = 16200;
     }
+
+    // if (rightX < -70) {
+    // 	armMacro = true;
+    // 	armTarget = 28000;
+    // }
+
+    // if (digitalA) {
+    // 	armMacro = true;
+    // 	armTarget = 32000;
+    // }
+
+    // if (rightX < -70) {
+    // 	armMacro = true;
+    // 	armTarget = 30000;
+    // }
 
     if (armMacro) {
       error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
