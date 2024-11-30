@@ -392,10 +392,10 @@ void opcontrol() {
       // 10000)) {
       if (rightY > 10) {
         armMacro = false;
-        arm.move(rightY * 120);
+        arm.move(rightY);
       } else if (rightY < 10) {
         armMacro = false;
-        arm.move(rightY * 120);
+        arm.move(rightY);
       }
     }
 
