@@ -70,7 +70,7 @@ void initialize() {
   });
   pros::Task Macro([&]() {
     while (autoStarted == true) {
-      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
+      error = angleWrap(armTarget, armRotation.get_angle()); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 0.5 || fabs(error + derivative) < 0.5) {
         arm.move_voltage(0);
@@ -433,7 +433,7 @@ void opcontrol() {
     // }
 
     if (armMacro) {
-      error = angleWrap(armTarget - armRotation.get_angle()); // 7250 = target
+      error = angleWrap(armTarget, armRotation.get_angle()); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);

@@ -1,16 +1,20 @@
 #ifndef MATHFUNC_HPP
 #define MATHFUNC_HPP 
-#include <iostream>
 
 template <typename T> int sign(T val) { return (T(0) < val) - (val < T(0)); }
 
-double angleWrap(double angle) {
-  if (angle >= 18000) {
-    angle -= 36000;
-  }
+double angleWrap(double target, double angle) {
+  double error = target - angle;
+  if(angle < 5000 && angle > 2500){
+    error = error - 36000;
+  }else{
+    if (error >= 18000) {
+      error -= 36000;
+    }
 
-  if (angle < -18000) {
-    angle += 36000;
+    if (error < -18000) {
+      error += 36000;
+    }
   }
 
   return angle;
