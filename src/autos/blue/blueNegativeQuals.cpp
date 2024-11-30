@@ -3,6 +3,7 @@
 #include "globals.hpp"
 
 void blueNegativeQuals() {
+  autoStarted = false;
   chassis.setPose(55, 23.5, 90);
   chassis.moveToPose(27, 23.5, 90, 1000, {.forwards = false});
   chassis.waitUntilDone();

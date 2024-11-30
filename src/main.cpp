@@ -386,49 +386,60 @@ void opcontrol() {
     if (rightY > 30) {
       armMacro = false;
       arm.move(rightY);
+      std::cout << "rightY > 30" << std::endl;
     } else if (rightY < -30) {
       armMacro = false;
       arm.move(rightY);
+      std::cout << "rightY < -30" << std::endl;
     }
 
     if (!armMacro && std::abs(rightY) < 30) {
       arm.move(0);
+      std::cout<<"!armMAcro"<< std::endl;
     }
     if (rightX > 70) {
       //loading
       armMacro = true;
       armTarget = 16200;
+      std::cout <<"rightX > 70" << std::endl;
     }
 
     if (rightX < -70) {
       //alliance stake lineup
       armMacro = true;
       armTarget = 30000;
+      std::cout << "rightX < -70" << std::endl;
     }
 
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
       //goal flip
       armMacro = true;
       armTarget = 36000;
+      std::cout << "digitalA" << std::endl;
     }
 
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
       //descore
       armMacro = true;
       armTarget = 28000;
+      std::cout << "digitalY" << std::endl;
     }
     if (armMacro) {
+      std::cout << "armMacro running" << std::endl;
       error = angleWrapOneDirection(armTarget, armRotation.get_angle(),
                                     -1); // 7250 = target
       derivative = (error - previous_error);
       if (fabs(error) < 2 || fabs(error + derivative) < 2) {
         arm.move_voltage(0);
         break;
+        std::cout << "fabs error < 2" << std::endl;
       }
       if (sign(error) != sign(previous_error)) {
         integral += error;
+        std::cout << "integral += error" << std::endl;
       } else {
         integral = 0;
+        std::cout << "integral = 0" << std::endl;
       }
       arm.move_voltage(error * armkP + integral * armkI + derivative * armkD);
       previous_error = error;
