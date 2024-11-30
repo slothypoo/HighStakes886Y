@@ -1,5 +1,6 @@
 #ifndef MATHFUNC_HPP
 #define MATHFUNC_HPP 
+#include <iostream>
 
 template <typename T> int sign(T val) { return (T(0) < val) - (val < T(0)); }
 
@@ -19,6 +20,7 @@ double angleWrapOneDirection(double target, double angle, int direction, int ran
   double error = target - angle;
   if(sign(error) != direction && range > angle) {
     error = (error + 36000*direction) * inversion;
+    std::cout << "running this" << std::endl;
   }
   return error;
 }
