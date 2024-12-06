@@ -25,22 +25,53 @@
 //////////////////////////////////////////////////////////
 
 void on_left_button() {
-  color = !color;
-  if (color) {
+  autonColor = (autonColor + 1) % 3;
+  if (autonColor == 0) {
+    pros::lcd::set_text(4, "Color: Red");
+  } else if (autonColor == 1){
     pros::lcd::set_text(4, "Color: Blue");
   } else {
-    pros::lcd::set_text(4, "Color: Red");
+    pros::lcd::set_text(4, "Color: MISC");
   }
 }
 
 void on_center_button() {
-  current = (current + 1) % 3;
-  if (current == 0) {
-    pros::lcd::set_text(5, "Autonomous Running: Negative Corner");
-  } else if (current == 1) {
-    pros::lcd::set_text(5, "Autonomous Running: Positive Corner");
+  startingPos = (startingPos + 1) % 3;
+  if (startingPos == 0) {
+    pros::lcd::set_text(5, "Starting Position: Positive");
+  } else if (startingPos == 1) {
+    pros::lcd::set_text(5, "Starting Position: Negative");
   } else {
-    pros::lcd::set_text(5, "Autonomous Running: Rush Alliance ");
+    pros::lcd::set_text(5, "Starting Position: Skills");
+  }
+}
+
+void on_right_button() {
+  path = (path + 1) % 3;
+
+  //POSITIVE
+  if (path == 0 && startingPos == 0) {
+    pros::lcd::set_text(6, "Autonomous Running: 3 + 1 AWP");
+  } else if (path == 1 && startingPos == 0) {
+    pros::lcd::set_text(6, "Autonomous Running: 3 + 1 Elims");
+  } else if (path == 2 && startingPos == 0) {
+    pros::lcd::set_text(6, "Autonomous Running: Rush");
+  }
+  //NEGATIVE
+  else if (path == 0 && startingPos == 1) {
+    pros::lcd::set_text(6, "Autonomous Running: 5 Ring AWP");
+  } else if (path == 1 && startingPos == 1) {
+    pros::lcd::set_text(6, "Autonomous Running: 5 + 1 Elims");
+  } else if (path == 2 && startingPos == 1) {
+    pros::lcd::set_text(6, "Autonomous Running: 6 Ring Elims");
+  }
+  //MISC
+  else if (path == 0 && startingPos == 2) {
+    pros::lcd::set_text(6, "Autonomous Running: Skills");
+  } else if (path == 1 && startingPos == 2) {
+    pros::lcd::set_text(6, "Autonomous Running: No Autonomous");
+  } else if (path == 2 && startingPos == 2) {
+    pros::lcd::set_text(6, "Autonomous Running: Leave Line");
   }
 }
 /**
@@ -53,6 +84,7 @@ void initialize() {
   pros::lcd::initialize(); // initialize brain screen
   pros::lcd::register_btn0_cb(on_left_button);
   pros::lcd::register_btn1_cb(on_center_button);
+  pros::lcd::register_btn2_cb(on_right_button);
   chassis.calibrate(); // calibrate sensors
   // intakeRaise.set_value(1);
   armRotation.reset();
@@ -87,7 +119,8 @@ void initialize() {
     }
   });
   pros::lcd::set_text(4, "Color: Red");
-  pros::lcd::set_text(5, "Autonomous Running: Negative Corner");
+  pros::lcd::set_text(5, "Starting Position: Positive");
+  pros::lcd::set_text(6, "Autonomous Running: 3 + 1 AWP");
 }
 
 /**
@@ -119,40 +152,71 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-
-void no_auto() {}
-
-void red_no_auto_AWP() {
-  chassis.setPose(-62, -24, 90);
-  chassis.moveToPose(-55, -24, 90, 1000);
-}
-
-void blue_no_auto_AWP() {
-  chassis.setPose(62, -24, 270);
-  chassis.moveToPose(55, -25, 270, 1000);
-}
-
-
-
 void autonomous() {
-  if (color) {
-    if (current == 0) {
-      blueNegativeQuals();
-    } else if (current == 1) {
-      bluePositiveSoloAWP();
-    } else {
-      blueRushAlliance();
+  if (autonColor == 0) {
+    //RED
+    if (startingPos == 0) {
+      if (path == 0) {
+        redPositiveSoloAWP();
+      }
+      else if (path == 1) {
+        redPositiveSoloAWPElims();
+      }
+      else {
+        redRushAlliance();
+      }
     }
-  } else {
-    if (current == 0) {
-      redNegativeQuals();
-    } else if (current == 1) {
-      redPositiveSoloAWP();
-    } else {
-      redRushAlliance();
+    else if (startingPos == 1) {
+      if (path == 0) {
+        redNegativeQuals();
+      }
+      else if (path == 1) {
+        redNegativeAlliance();
+      }
+      else {
+        redNegativeElims();
+      }
+    }
+  } 
+  else if (autonColor == 1) {
+    //BLUE
+    if (startingPos == 0) {
+      if (path == 0) {
+        bluePositiveSoloAWP();
+      }
+      else if (path == 1) {
+        bluePositiveSoloAWPElims();
+      }
+      else {
+        blueRushAlliance();
+      }
+    }
+    else if (startingPos == 1) {
+      if (path == 0) {
+        blueNegativeQuals();
+      }
+      else if (path == 1) {
+        blueNegativeAlliance();
+      }
+      else {
+        blueNegativeElims();
+      }      
     }
   }
-  skills();
+  else if (autonColor == 2) {
+    //MISC
+    if (startingPos == 2) {
+      if (path == 0) {
+        skills();
+      }
+      else if (path == 1) {
+        noAuto();
+      }
+      else {
+        leaveLine();
+      }
+    }
+  }
 }
 
 /**

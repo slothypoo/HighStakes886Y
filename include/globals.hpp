@@ -36,4 +36,7 @@ extern int current;
 // random other stuff like # of rings 
 extern int misc;
 
+extern int autonColor;
+extern int path;
+extern int startingPos;
 #endif

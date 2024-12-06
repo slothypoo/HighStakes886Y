@@ -3,11 +3,17 @@
 
 // Positive solo AWP 
 void redPositiveSoloAWP();
+void redPositiveSoloAWPElims();
 void bluePositiveSoloAWP();
+void bluePositiveSoloAWPElims();
 
 // negative corner for quals
 void redNegativeQuals();
+void redNegativeElims();
+void redNegativeAlliance();
 void blueNegativeQuals();
+void blueNegativeElims();
+void blueNegativeAlliance();
 
 // rush autos
 void redRushAlliance();

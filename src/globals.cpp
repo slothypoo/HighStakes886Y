@@ -41,4 +41,6 @@ int misc = 0;
 int autonColor = 0;
 //path
 int path = 0;
+//starting pos
+int startingPos = 0; 
 
