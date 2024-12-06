@@ -13,9 +13,9 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // ARM PID //
 bool armMacro = false;
 double armPosition;
-double armkP = 3.12;
+double armkP = 2.45;
 double armkI = 0;
-double armkD = 1.8;
+double armkD = 2.1;
 double previous_error = 0;
 double target = 12000;
 double error;
