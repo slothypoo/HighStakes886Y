@@ -44,3 +44,10 @@ int path = 0;
 //starting pos
 int startingPos = 0; 
 
+// ARM TARGETS //
+int loadingPos = 15800;
+int restingPos = 12000;
+int wallStakePos = 30000;
+int allianceStakePos = 35000;
+int armRaisedPos = 20000;
+
