@@ -39,4 +39,11 @@ extern int misc;
 extern int autonColor;
 extern int path;
 extern int startingPos;
+
+// ARM TARGETS //
+extern const int loadingPos;
+extern const int restingPos;
+extern const int allianceStakePos;
+extern const int wallStakePos;
+extern const int armRaisedPos;
 #endif
