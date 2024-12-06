@@ -269,7 +269,7 @@ void opcontrol() {
     if (rightX > 70) {
       //loading
       armMacro = true;
-      armTarget = 15800;
+      armTarget = loadingPos;
     }
 
     if (rightX < -70) {
