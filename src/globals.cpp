@@ -35,3 +35,10 @@ bool color = false;
 int current =0;
 // random other stuff like # of rings 
 int misc = 0;
+
+//MO AUTO SELECTOR
+//color 
+int autonColor = 0;
+//path
+int path = 0;
+

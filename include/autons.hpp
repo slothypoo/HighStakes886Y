@@ -12,4 +12,9 @@ void blueNegativeQuals();
 // rush autos
 void redRushAlliance();
 void blueRushAlliance();
+
+//miscellaneous
+void skills();
+void noAuto();
+void leaveLine();
 #endif
