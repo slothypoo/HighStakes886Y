@@ -10,6 +10,13 @@ pros::adi::DigitalOut doinker(2);
 pros::adi::DigitalOut goalClamp(1);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
+// ARM TARGETS //
+int loadingPos = 15800;
+int restingPos = 12000;
+int wallStakePos = 30000;
+int allianceStakePos = 35000;
+int armRaisedPos = 20000;
+
 // ARM PID //
 bool armMacro = false;
 double armPosition;
@@ -17,7 +24,7 @@ double armkP = 2.45;
 double armkI = 0;
 double armkD = 2.1;
 double previous_error = 0;
-double target = 12000;
+double target = restingPos;
 double error;
 double integral;
 double armVoltage;
@@ -44,10 +51,5 @@ int path = 0;
 //starting pos
 int startingPos = 0; 
 
-// ARM TARGETS //
-int loadingPos = 15800;
-int restingPos = 12000;
-int wallStakePos = 30000;
-int allianceStakePos = 35000;
-int armRaisedPos = 20000;
+
 
