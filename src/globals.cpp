@@ -11,11 +11,11 @@ pros::adi::DigitalOut goalClamp(1);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // ARM TARGETS //
-int loadingPos = 15800;
-int restingPos = 12000;
-int wallStakePos = 30000;
-int allianceStakePos = 35000;
-int armRaisedPos = 20000;
+const int loadingPos = 15800;
+const int restingPos = 12000;
+const int wallStakePos = 30000;
+const int allianceStakePos = 35000;
+const int armRaisedPos = 20000;
 
 // ARM PID //
 bool armMacro = false;
