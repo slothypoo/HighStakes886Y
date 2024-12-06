@@ -7,7 +7,7 @@ void skills() {
   autoStarted = true;
   chassis.setPose(0, 0, 0);
 
-  armTarget = 12000;
+  armTarget = restingPos;
   intakeRaise.set_value(true);
   conveyor.move_velocity(-12000);
   pros::delay(700); // Ring on alliance stake
@@ -34,7 +34,7 @@ void skills() {
 
   chassis.moveToPoint(54, 85, 1300, {.maxSpeed = 70});
   chassis.waitUntil(15);
-  armTarget = 15800;
+  armTarget = loadingPos;
   chassis.waitUntilDone();
   pros::delay(350);
   chassis.moveToPoint(57, 66, 1200,{.forwards = false}); // moving back to neutral stake
@@ -44,11 +44,11 @@ void skills() {
   conveyor.move_velocity(0);
   chassis.moveToPoint(80, 66, 1200);
   chassis.waitUntil(3);
-  armTarget = 30000;
+  armTarget = wallStakePos;
   // scoring neutral stake
   chassis.moveToPoint(49, 66, 1200, {.forwards = false});
   chassis.waitUntilDone();
-  armTarget = 12000;
+  armTarget = restingPos;
   chassis.turnToHeading(180, 800); // aim for bottom 2 rings
   chassis.waitUntilDone();
   intake.move_velocity(-12000);
@@ -91,9 +91,9 @@ void skills() {
   chassis.turnToHeading(13, 800);
   chassis.moveToPoint(-47, 88, 1200);
   chassis.waitUntil(12);
-  armTarget = 15800;
+  armTarget = loadingPos;
   chassis.waitUntilDone();
-  armTarget = 15800;
+  armTarget = loadingPos;
   pros::delay(200);
   chassis.moveToPoint(-57, 71, 1200, {.forwards = false});
   chassis.turnToHeading(-90, 1000);
@@ -102,10 +102,10 @@ void skills() {
   conveyor.move_velocity(0);
   chassis.moveToPoint(-80, 71, 1200);
   chassis.waitUntil(3);
-  armTarget = 30000;
+  armTarget = wallStakePos;
   chassis.moveToPoint(-49, 68, 900, {.forwards = false});
   chassis.waitUntilDone();
-  armTarget = 12000;
+  armTarget = restingPos;
   chassis.turnToHeading(180, 800); // aim for bottom 2 rings
   chassis.waitUntilDone();
   intake.move_velocity(-12000);
@@ -193,7 +193,7 @@ void skills() {
   chassis.moveToPoint(-68, 130, 700, {.forwards = false});
   chassis.moveToPose(29, 84.5, 116, 2500, {.maxSpeed = 95});
   chassis.waitUntil(1);
-  armTarget = 16250;
+  armTarget = loadingPos;
   chassis.waitUntilDone();
   pros::delay(800);
   chassis.moveToPoint(7.5, 117, 1500, {.forwards = false, .maxSpeed = 90});
@@ -204,12 +204,12 @@ void skills() {
   intake.move_velocity(0);
   conveyor.move_velocity(0);
   chassis.waitUntilDone();
-  armTarget = 34000;
+  armTarget = allianceStakePos;
   pros::delay(600);
   chassis.moveToPoint(7.5, 110, 1500, {.forwards = false, .minSpeed = 110});
   chassis.waitUntilDone();
   pros::delay(500);
-  armTarget = 20000;
+  armTarget = armRaisedPos;
   chassis.turnToHeading(50, 1000, {.maxSpeed = 110});
   chassis.moveToPoint(70, 140, 1500, {.minSpeed = 110});
   

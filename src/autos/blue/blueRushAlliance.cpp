@@ -4,7 +4,7 @@
 
 void blueRushAlliance() {
   autoStarted = true;
-  armTarget = 12000;
+  armTarget = restingPos;
   chassis.setPose(50, -62.25, 90);
   chassis.moveToPose(27, -62.26, 90, 700, {.forwards = false, .minSpeed = 90});
   // chassis.turnToHeading(240, 1000);
