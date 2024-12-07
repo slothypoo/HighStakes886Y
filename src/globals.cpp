@@ -16,6 +16,7 @@ const int restingPos = 12000;
 const int wallStakePos = 30000;
 const int allianceStakePos = 35000;
 const int armRaisedPos = 20000;
+const int barTouchPos = 25000;
 
 // ARM PID //
 bool armMacro = false;

@@ -38,6 +38,7 @@ void redNegativeQuals() {
   intake.move_voltage(0);
   conveyor.move_voltage(0);
   chassis.moveToPoint(-23.5, 0, 3000, {.maxSpeed = 40});
+  armTarget = wallStakePos;
 
   // // ELIMS ONLY BELOW - 6 RING//
   // chassis.turnToPoint(-51, 10, 500);

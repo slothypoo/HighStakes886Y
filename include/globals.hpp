@@ -46,4 +46,5 @@ extern const int restingPos;
 extern const int allianceStakePos;
 extern const int wallStakePos;
 extern const int armRaisedPos;
+extern const int barTouchPos;
 #endif
