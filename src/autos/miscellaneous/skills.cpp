@@ -200,7 +200,7 @@ void skills() {
 
   chassis.turnToHeading(0, 1400, {.maxSpeed = 90});
   chassis.moveToPoint(6.5, 130, 800, {.maxSpeed = 60});
-  chassis.moveToPoint(6.5, 114.4, 800, {.forwards = false, .maxSpeed = 60});
+  chassis.moveToPoint(6.5, 114.1, 800, {.forwards = false, .maxSpeed = 60});
   intake.move_velocity(0);
   conveyor.move_velocity(0);
   chassis.waitUntilDone();
