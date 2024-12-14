@@ -26,7 +26,7 @@ void blueNegativeAlliance() {
   chassis.turnToPoint(20, 42.5, 700);
   chassis.moveToPoint(20, 42.5, 800);
   chassis.turnToHeading(90, 700);
-  chassis.moveToPose(65, 65, 45, 2000, {.minSpeed = 70});
+  chassis.moveToPose(65, 65, 45, 2200, {.minSpeed = 75});
   chassis.waitUntilDone();
 //   conveyor.move_velocity(6000);
   pros::delay(100);
@@ -57,9 +57,9 @@ void blueNegativeAlliance() {
   conveyor.move_velocity(-12000);
   chassis.moveToPoint(49, 19, 1000, {.forwards = false});
 //   chassis.turnToHeading(225, 800);
-  chassis.turnToPoint(60, 11.75, 800);
+  chassis.turnToPoint(62.5, 8.75, 800);
   //SCORE
-  chassis.moveToPoint(60, 11.75, 1000, {.maxSpeed = 60});
+  chassis.moveToPoint(62.5, 8.75, 1000, {.maxSpeed = 60});
   chassis.waitUntil(3);
   conveyor.move_velocity(0);
   intake.move_velocity(0);

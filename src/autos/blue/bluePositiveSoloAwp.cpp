@@ -45,7 +45,7 @@ void bluePositiveSoloAWP() {
   conveyor.move_velocity(0);
   intake.move_velocity(0);
   chassis.turnToPoint(70, -65, 400);
-  chassis.moveToPoint(70, -65, 1000, {.maxSpeed = 70});
+  chassis.moveToPoint(70, -65, 1250, {.maxSpeed = 70});
   chassis.waitUntil(10);
   intake.move_velocity(-12000);
   chassis.waitUntilDone();

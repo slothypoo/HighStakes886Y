@@ -188,7 +188,9 @@ void skills() {
   pros::delay(200);
   chassis.turnToHeading(135, 1000);
   chassis.waitUntilDone();
-  pros::delay(100);
+  intake.move_velocity(1000);
+  conveyor.move_velocity(1000);
+  pros::delay(300);
   goalClamp.set_value(false);
   chassis.moveToPoint(-68, 130, 700, {.forwards = false});
   chassis.moveToPose(29, 84.5, 116, 2500, {.maxSpeed = 95});
