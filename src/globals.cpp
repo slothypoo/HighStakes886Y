@@ -8,6 +8,7 @@ pros::adi::DigitalOut hang(3);
 pros::adi::DigitalOut intakeRaise(4);
 pros::adi::DigitalOut doinker(2);
 pros::adi::DigitalOut goalClamp(1);
+pros::adi::DigitalOut rushClamp(5);
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // ARM TARGETS //

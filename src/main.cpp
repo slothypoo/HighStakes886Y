@@ -343,6 +343,11 @@ void opcontrol() {
       intakeRaise.set_value(isExtended3);
     }
 
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+      isExtended4 = !isExtended4;
+      rushClamp.set_value(isExtended4);
+    }
+
     // if (digitalA) {
     // 	isExtended4 = !isExtended4;
     // 	hang.set_value(isExtended4);

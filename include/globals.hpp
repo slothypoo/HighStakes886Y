@@ -8,6 +8,7 @@ extern pros::adi::DigitalOut hang;
 extern pros::adi::DigitalOut intakeRaise;
 extern pros::adi::DigitalOut doinker;
 extern pros::adi::DigitalOut goalClamp;
+extern pros::adi::DigitalOut rushClamp;
 extern pros::Controller controller;
 
 // ARM PID //
