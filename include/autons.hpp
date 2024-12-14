@@ -18,6 +18,7 @@ void blueNegativeAlliance();
 // rush autos
 void redRushAlliance();
 void blueRushAlliance();
+void redRushFast();
 
 //miscellaneous
 void skills();
