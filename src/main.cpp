@@ -47,7 +47,7 @@ void on_center_button() {
 }
 
 void on_right_button() {
-  path = (path + 1) % 3;
+  path = (path + 1) % 4;
 
   //POSITIVE
   if (path == 0 && startingPos == 0) {
@@ -55,7 +55,9 @@ void on_right_button() {
   } else if (path == 1 && startingPos == 0) {
     pros::lcd::set_text(6, "Autonomous Running: 3 + 1 Elims");
   } else if (path == 2 && startingPos == 0) {
-    pros::lcd::set_text(6, "Autonomous Running: Rush");
+    pros::lcd::set_text(6, "Autonomous Running: Rush Fast");
+  } else if (path == 3 && startingPos == 0) {
+    pros::lcd::set_text(6, "Autonomous Running: Rush Slow");
   }
   //NEGATIVE
   else if (path == 0 && startingPos == 1) {
@@ -162,6 +164,9 @@ void autonomous() {
       else if (path == 1) {
         redPositiveSoloAWPElims();
       }
+      else if (path == 2) {
+        redRushFast();
+      }
       else {
         redRushAlliance();
       }
@@ -186,6 +191,9 @@ void autonomous() {
       }
       else if (path == 1) {
         bluePositiveSoloAWPElims();
+      }
+      else if (path == 2) {
+        blueRushFast();
       }
       else {
         blueRushAlliance();
